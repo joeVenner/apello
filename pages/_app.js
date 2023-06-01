@@ -1,15 +1,22 @@
-import Layout from "../containers/Layout";
-import { AuthContextProvider } from "../context/AuthContext";
 import {
-  getChainOptions,
+  ChainInfoID,
+  WalletManagerProvider,
+  WalletType,
+} from "@noahsaso/cosmodal";
+import {
   StaticWalletProvider,
   WalletControllerChainOptions,
   WalletProvider,
+  getChainOptions,
 } from "@terra-money/wallet-provider";
-import { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
+import { AppProps } from "next/app";
+
+import Layout from "../containers/Layout";
+import { AuthContextProvider } from "../context/AuthContext";
 import { BannerContextProvider } from "../context/BannerContext";
 import "../styles/globals.css";
+
 // import localFont from '@next/font';
 
 // const myFont = localFont({
@@ -22,14 +29,29 @@ export default function App(
     WalletControllerChainOptions
 ) {
   const main = (
-    <AuthContextProvider>
-      <Layout>
-        <BannerContextProvider>
-          <Component {...pageProps} />
-        </BannerContextProvider>
-        <Analytics />
-      </Layout>
-    </AuthContextProvider>
+    <WalletManagerProvider
+      defaultChainId={ChainInfoID.Stargaze1}
+      enabledWalletTypes={[
+        WalletType.Leap,
+        WalletType.Keplr,
+        WalletType.WalletConnectKeplr,
+      ]}
+      walletConnectClientMeta={{
+        name: "Apello.xyz",
+        description: "A platform for Cosmos",
+        url: "https://apello.xyz",
+        icons: ["https://apello.xyz/lyre-08.png"],
+      }}
+    >
+      <AuthContextProvider>
+        <Layout>
+          <BannerContextProvider>
+            <Component {...pageProps} />
+          </BannerContextProvider>
+          <Analytics />
+        </Layout>
+      </AuthContextProvider>
+    </WalletManagerProvider>
   );
 
   return typeof window !== "undefined" ? (
