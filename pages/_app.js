@@ -38,7 +38,7 @@ export default function App(
       ]}
       walletConnectClientMeta={{
         name: "Apello.xyz",
-        description: "A platform for Cosmos",
+        description: "A platform for Cosmos tooling",
         url: "https://apello.xyz",
         icons: ["https://apello.xyz/lyre-08.png"],
       }}
