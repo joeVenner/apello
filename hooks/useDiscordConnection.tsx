@@ -55,8 +55,6 @@ export function DiscordProvider({ children }) {
       setUser(discordAccount);
 
       router.replace("/holder", "", { shallow: true });
-
-      console.log(discordAccount);
     }
 
     linkDiscordUser();

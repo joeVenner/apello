@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const URL = "apello.org";
-
-const AUTHORIZE_URL = `https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=https%3A%2F%2F${URL}%2Fholder&response_type=token&scope=identify`;
+const redirectURL = () => {
+  let origin = encodeURIComponent(window.location.origin);
+  return `https://discord.com/api/oauth2/authorize?client_id=990757313390465114&redirect_uri=${origin}%2Fholder&response_type=token&scope=identify`;
+};
 
 export function authorize() {
-  window.open(AUTHORIZE_URL, "_self");
+  window.open(redirectURL(), "_self");
 }
 
 export function avatarURL(account) {
