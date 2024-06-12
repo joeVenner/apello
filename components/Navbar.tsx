@@ -55,7 +55,6 @@ function MobileMenu({ wallet, close }) {
             { name: "Archway", token: "Arch" },
             { name: "Juno" },
             { name: "Passage" },
-            { name: "Chihuahua" },
           ]}
         />
         <Header.MenuDropdown text="Calendar">
@@ -118,7 +117,6 @@ export default function Navbar() {
               { name: "Archway", token: "Arch" },
               { name: "Juno" },
               { name: "Passage" },
-              { name: "Chihuahua" },
             ]}
           />
           <Header.MenuDropdown text="Calendar">
