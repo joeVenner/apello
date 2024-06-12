@@ -12,8 +12,8 @@ const TopSale = ({chain, query}) => {
       const fetchData = async() =>{
           try{
               
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top1?day=${query}${ (router.query.chain) && "&chain="+router.query.chain}`);
-          // console.log(res)
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sales/top1?day=${query}&chain=${chain}`);
+          console.log("top1",res)
           const {topSale} = res.data;
           // console.log(topSale);
           setTopSale(topSale[0])
