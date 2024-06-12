@@ -1,6 +1,6 @@
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
 
-export const coinName = (chain, token) => chain === "stargaze" ? "Stars" : chain === "juno" ? "Usdc" : chain === "passage" ? "Pasg" : chain === "injective" ? "Inj" : chain === "chihuahua" ? "HuaHua": chain === "teritori" && token === "Tori" ? "Tori" : "Atom"
+export const coinName = (chain, token) => chain === "stargaze" ? "Stars" : chain === "juno" ? "Usdc" : chain === "passage" ? "Pasg" : chain === "injective" ? "Inj" : chain === "chihuahua" ? "HuaHua": chain === "archway" ? "Arch": chain === "teritori" && token === "Tori" ? "Tori" : "Atom"
 
 const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transactionID, CollectionName, collectionImage, nftImage}) => {
     // console.log(createdAt);
