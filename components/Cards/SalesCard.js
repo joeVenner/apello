@@ -6,6 +6,7 @@ export const CoinImage = ({chain, token}) =>
 chain === "stargaze" ? ( <img src="https://www.stargaze.zone/icon.svg" height={20} width={20} className="h-5" alt="stargaze coin" /> ) 
 : chain === "juno" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/images/juno.png" alt="usdc coin" className="h-5" width={20} height={20}  />) 
 : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
+: chain === "archway" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/archway/images/archway.png" alt="archway coin" className="h-5" width={20} height={20}  />)
 : chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
 : chain === "chihuahua" ? (<Image src="https://raw.githubusercontent.com/cosmostation/chainlist/main/chain/chihuahua/chainImg/_chainImg.svg" alt="chihuahua coin" className="h-5" width={20} height={20}  />)
 : chain === "teritori" && token ==="Tori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
