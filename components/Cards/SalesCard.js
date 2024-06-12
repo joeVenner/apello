@@ -61,6 +61,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                     : chain === "injective" ? (<Image src="/tokens/inj.png" alt="injective coin" className="h-5" width={20} height={20}  />)
                     : chain === "passage" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/passage/images/pasg.png" alt="passage coin" className="h-5" width={20} height={20}  />)
                     : chain === "chihuahua" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/chihuahua/images/huahua.png" alt="chihuahua coin" className="h-5" width={20} height={20}  />)
+                    : chain === "archway" ? (<Image src="https://raw.githubusercontent.com/cosmos/chain-registry/master/archway/images/archway.png" alt="archway coin" className="h-5" width={20} height={20}  />)
                     : chain === "teritori" ? (<Image src="/tokens/tori.png" alt="tori coin" className="h-5" width={20} height={20}  />)
                     : (<Image src="/tokens/atom.png" alt="atom coin" className="h-5" width={20} height={20}  />)}
                     {/* { chain ==="juno" ? (<img src="/juno.png" className="h-5" alt="juno logo" />) : (<img src="/stargaze.png" className="h-5" alt="stargaze logo" />) } */}
