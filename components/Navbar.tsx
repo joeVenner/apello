@@ -139,7 +139,7 @@ export default function Navbar() {
             text="Image Creator"
             href="https://zeus.apello.xyz/create"
           />
-          <Header.MenuLink text="Snapshot" disabled />
+          <Header.MenuLink text="Snapshot" href="https://trippyinj.xyz/token-holders" newTab />
           <Header.MenuLink text="Docs" href="https://use.apello.xyz" newTab />
         </Header.Menu>
         <div className="mx-2 ml-8 text-md flex justify-center items-center">
