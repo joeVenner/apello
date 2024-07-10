@@ -61,7 +61,7 @@ export const CHAINS: Chain[] = [
     supported: true,
   },
   {
-    properName: "Omniflix",
+    properName: "omniflix",
     name: "omniflixhub",
     ticker: "FLIX",
     supported: true,
@@ -78,8 +78,12 @@ export const CHAINS: Chain[] = [
   },
 ].map((c) => new Chain(c));
 
-export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) =>
+export const CHAINS_BY_WALLET_TYPE_OLD = mapping("name", CHAINS, (k) =>
   k === "omniflixhub" ? "omniflix" : k,
+);
+
+export const CHAINS_BY_WALLET_TYPE_OLD = mapping("name", CHAINS, (k) =>
+  k === "omniflixhub" ? "omniflixhub" : k,
 );
 
 export function chainForWallet(wallet: { type: string }) {
