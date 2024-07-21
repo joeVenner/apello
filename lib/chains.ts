@@ -76,6 +76,11 @@ export const CHAINS: Chain[] = [
     ticker: "ORAI",
     supported: true,
   },
+  {
+    name: "forma",
+    ticker: "forma",
+    supported: true,
+  },
 ].map((c) => new Chain(c));
 
 export const CHAINS_BY_WALLET_TYPE_OLD = mapping("name", CHAINS, (k) =>

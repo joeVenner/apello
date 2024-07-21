@@ -14,24 +14,67 @@ export function AuthContextProvider({ children }) {
   const [auth, setAuth] = useState(null);
   const thread = useThread();
 
-  function connectWallet(chainName) {
-    const walletRepo = walletManager.getWalletRepo(chainName);
-    walletRepo.activate();
-    walletRepo.connect();
+  const isMetaMaskInstalled = () => {
+    const { ethereum } = window;
+    return Boolean(ethereum && ethereum.isMetaMask);
+  };
 
-    return thread.run(() =>
-      walletRepo.current?.isWalletConnected ? walletRepo.current : null,
-    );
+
+
+
+  async function connectWallet(chainName) {
+    console.log(chainName);
+    if (chainName === "forma") {
+      if (isMetaMaskInstalled()) {
+        try {
+          const accounts = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              window.ethereum
+                .request({ method: 'eth_requestAccounts' })
+                .then(resolve)
+                .catch(reject);
+            }, 100);
+          });
+          console.log('Connected to MetaMask', accounts[0]);
+          return { chainName, address: accounts[0], isWalletConnected: true };
+    
+        } catch (error) {
+
+          console.error('User denied account access',error);
+
+          return null;
+        }
+      } else {
+        console.log('MetaMask is not installed');
+        alert('MetaMask is not installed');
+        return null;
+      }
+    } else {
+      const walletRepo = walletManager.getWalletRepo(chainName);
+      walletRepo.activate();
+      walletRepo.connect();
+
+      return thread.run(() =>
+        walletRepo.current?.isWalletConnected ? walletRepo.current : null,
+      );
+    }
   }
 
   function disconnectWallet(chainName) {
-    const walletRepo = walletManager.getWalletRepo(chainName);
-    if (!walletRepo.current) return;
+    if (chainName === "forma") {
+      // MetaMask doesn't have a built-in disconnect method
+      // You can clear your app's state instead
+      console.log('Disconnected from MetaMask');
+      return Promise.resolve(true);
+    } else {
+      const walletRepo = walletManager.getWalletRepo(chainName);
+      if (!walletRepo.current) return;
 
-    walletRepo.current.disconnect();
-    walletRepo.disconnect();
+      walletRepo.current.disconnect();
+      walletRepo.disconnect();
 
-    return thread.run(() => !walletRepo.current?.isWalletConnected);
+      return thread.run(() => !walletRepo.current?.isWalletConnected);
+    }
   }
 
   function view() {
@@ -42,9 +85,10 @@ export function AuthContextProvider({ children }) {
     );
     walletRepo.openView();
   }
-
   async function connect(chainName) {
     const wallet = await connectWallet(chainName);
+    if (!wallet) return;
+
     const response = await ApelloAPI.addWallet(
       wallet.chainName,
       wallet.address,
@@ -54,6 +98,7 @@ export function AuthContextProvider({ children }) {
 
     localStorage.setItem(AUTH_CACHE_KEY, JSON.stringify(response.data));
   }
+
 
   async function disconnect() {
     if (!auth) return;
@@ -100,3 +145,4 @@ export function AuthContextProvider({ children }) {
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 }
+
