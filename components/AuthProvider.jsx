@@ -4,6 +4,7 @@ import { useManager } from "@cosmos-kit/react";
 import * as ApelloAPI from "../interface/apello";
 import useThread from "../hooks/useThread";
 import { chainForWallet } from "../lib/chains";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const AUTH_CACHE_KEY = "apello/wallet";
 
@@ -111,18 +112,29 @@ export function AuthContextProvider({ children }) {
   }
 
   async function reconnect(cachedAuth) {
-    try {
-      await ApelloAPI.checkWallet(cachedAuth.token, cachedAuth.wallet.adress);
-    } catch (e) {
-      return localStorage.clear();
+    console.log(cachedAuth);
+    if (cachedAuth.wallet.type === "forma") {
+        
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          console.log(accounts);
+          if (accounts.length > 0 && accounts[0].toLowerCase() === cachedAuth.wallet.adress.toLowerCase()) {
+            console.log('Reconnected to MetaMask', accounts[0]);
+            setAuth(cachedAuth);
+          } else {
+            console.log('MetaMask account does not match cached account');
+            // Optionally, you can update the auth with the new account
+            // setAuth({ ...cachedAuth, wallet: { ...cachedAuth.wallet, address: accounts[0] } });
+          }
+
+    
+    } else {
+      // Original reconnect logic for Cosmos chains
+      const walletRepo = walletManager.getWalletRepo(
+        chainForWallet(cachedAuth.wallet).name
+      );
+      walletRepo.activate();
+      setAuth(cachedAuth);
     }
-
-    const walletRepo = walletManager.getWalletRepo(
-      chainForWallet(cachedAuth.wallet).name,
-    );
-    walletRepo.activate();
-
-    setAuth(cachedAuth);
   }
 
   useEffect(() => {
