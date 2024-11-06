@@ -110,8 +110,14 @@ const HolderSection = () => {
               >
                 join
               </a>{" "}
-              our community, or support our project by purchasing one of our
-              NFTS:
+              our community, or support our project via donations! 
+              <a
+                className="text-apello hover:underline hover:opacity-90 cursor-pointer"
+                href="https://use.apello.xyz/apello/donate/donation"
+              >
+                join
+              </a>{" "}
+             
             </div>
           </div>
           <div className="pb-4 flex justify-center gap-x-5 hidden md:flex">
