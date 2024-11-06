@@ -110,12 +110,12 @@ const HolderSection = () => {
               >
                 join
               </a>{" "}
-              our community, or support our project via donations! 
+              our community, or support our project via {" "}
               <a
                 className="text-apello hover:underline hover:opacity-90 cursor-pointer"
                 href="https://use.apello.xyz/apello/donate/donation"
               >
-                join
+                donations!
               </a>{" "}
              
             </div>
@@ -125,7 +125,7 @@ const HolderSection = () => {
               href="https://injective.talis.art/collection/65e75806add77a2a935e81e2"
               className="flex gap-x-2 text-apello hover:underline hover:opacity-90 cursor-pointer"
             >
-              Napejas
+               NFT Supporter
               <Image
                 src="/chains/injective.svg"
                 height={20}
@@ -137,7 +137,7 @@ const HolderSection = () => {
               href="https://www.stargaze.zone/m/stars1yrpjz5cu5vemal70p686jk6cyj8aktuz8qkcg7xvvlalr90pxhqqvc4zy9/tokens"
               className="flex gap-x-2 text-apello hover:underline hover:opacity-90 cursor-pointer"
             >
-              Cosmos Apes
+              NFT Supporter
               <Image
                 src="/chains/stargaze.svg"
                 height={20}
