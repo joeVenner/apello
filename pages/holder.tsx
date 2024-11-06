@@ -187,6 +187,9 @@ const HolderSection = () => {
               <div className="pt-2">
                 To finish receiving your roles:
                 <ul className="list-disc mx-8">
+                  <li className="py-3 md:py-2">
+                    Return to your community&#39;s holder verification channel
+                  </li>
                     <li className="pb-2">
                     Click
                     <a href="https://discord.gg/caalabs">
@@ -195,9 +198,7 @@ const HolderSection = () => {
                       </span>
                     </a>
                   </li>
-                  <li className="py-3 md:py-2">
-                    Return to your community&#39;s holder verification channel
-                  </li>
+                  
                 </ul>
               </div>
             }
