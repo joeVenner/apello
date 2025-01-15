@@ -20,6 +20,9 @@ export function AuthContextProvider({ children }) {
     return Boolean(ethereum && ethereum.isMetaMask);
   };
 
+  const isPhantomInstalled = () => {
+    return Boolean(window.solana && window.solana.isPhantom);
+  };
 
 
 
@@ -50,7 +53,25 @@ export function AuthContextProvider({ children }) {
         alert('MetaMask is not installed');
         return null;
       }
-    } else {
+    } 
+    else if (chainName === "solana") {
+        if (isPhantomInstalled()) {
+          try {
+            const { publicKey } = await window.solana.connect();
+            console.log("Connected to Phantom Wallet", publicKey.toString());
+            return { chainName, address: publicKey.toString(), isWalletConnected: true };
+          } catch (error) {
+            console.error("User denied Phantom Wallet access", error);
+            return null;
+          }
+        } else {
+          console.log("Phantom Wallet is not installed");
+          alert("Phantom Wallet is not installed");
+          return null;
+        }
+        } 
+    
+    else {
       const walletRepo = walletManager.getWalletRepo(chainName);
       walletRepo.activate();
       walletRepo.connect();
@@ -67,7 +88,13 @@ export function AuthContextProvider({ children }) {
       // You can clear your app's state instead
       console.log('Disconnected from MetaMask');
       return Promise.resolve(true);
-    } else {
+    } 
+    else if (chainName === "solana") {
+      // MetaMask doesn't have a built-in disconnect method
+      // You can clear your app's state instead
+      console.log('Disconnected from Phantom');
+      return Promise.resolve(true);}
+    else {
       const walletRepo = walletManager.getWalletRepo(chainName);
       if (!walletRepo.current) return;
 
@@ -124,10 +151,26 @@ export function AuthContextProvider({ children }) {
             console.log('MetaMask account does not match cached account');
             // Optionally, you can update the auth with the new account
             // setAuth({ ...cachedAuth, wallet: { ...cachedAuth.wallet, address: accounts[0] } });
-          }
+          }}
 
-    
-    } else {
+          else if (cachedAuth.wallet.type === "solana") {
+            if (window.solana && window.solana.isPhantom) {
+              try {
+                const { publicKey } = await window.solana.connect({ onlyIfTrusted: true });
+                if (publicKey.toString().toLowerCase() === cachedAuth.wallet.adress.toLowerCase()) {
+                  console.log("Reconnected to Phantom Wallet", publicKey.toString());
+                  setAuth(cachedAuth);
+                } else {
+                  console.log("Phantom Wallet account does not match cached account");
+                }
+              } catch (error) {
+                console.error("Failed to reconnect to Phantom Wallet:", error);
+              }
+            } else {
+              console.log("Phantom Wallet is not installed");
+            }
+          } 
+    else {
       // Original reconnect logic for Cosmos chains
       const walletRepo = walletManager.getWalletRepo(
         chainForWallet(cachedAuth.wallet).name

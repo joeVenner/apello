@@ -39,7 +39,9 @@ export const CHAINS: Chain[] = [
     ticker: "STARS",
     supported: true,
   },
-  { name: "juno", ticker: "JUNO", supported: true },
+  { name: "juno", 
+    ticker: "JUNO", 
+    supported: true },
   {
     name: "passage",
     ticker: "PASG",
@@ -79,6 +81,11 @@ export const CHAINS: Chain[] = [
   {
     name: "forma",
     ticker: "forma",
+    supported: true,
+  },
+  {
+    name: "solana",
+    ticker: "SOL",
     supported: true,
   },
 ].map((c) => new Chain(c));
