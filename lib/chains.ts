@@ -79,6 +79,13 @@ export const CHAINS: Chain[] = [
     supported: true,
   },
   {
+    properName: "Forma 🐸",
+    name: "formal",
+    ticker: "formal",
+    supported: true,
+  },
+  {
+    properName: "Forma",
     name: "forma",
     ticker: "forma",
     supported: true,
@@ -94,9 +101,18 @@ export const CHAINS_BY_WALLET_TYPE_OLD = mapping("name", CHAINS, (k) =>
   k === "omniflixhub" ? "omniflix" : k,
 );
 
-export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) =>
-  k === "omniflixhub" ? "omniflixhub" : k,
-);
+export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) => {
+  if (k === "omniflixhub") {
+    return "omniflixhub";
+  } else if (k === "Forma 🐸") {
+    return "formal"; // Transform "Forma 🐸" to "Forma"
+  }
+  else if (k === "Forma 🦊") {
+    return "formam"; // Transform "Forma 🐸" to "Forma"
+  }
+  return k;
+});
+
 
 export function chainForWallet(wallet: { type: string }) {
   return CHAINS_BY_WALLET_TYPE[wallet.type];

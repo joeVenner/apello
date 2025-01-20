@@ -52,6 +52,7 @@ function ChainSelect({ connect, close, isMobileNav = false }) {
 }
 
 function WalletInfo({ wallet }) {
+  
   return (
     <div className="flex gap-x-4">
       <Image

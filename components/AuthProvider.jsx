@@ -28,7 +28,33 @@ export function AuthContextProvider({ children }) {
 
   async function connectWallet(chainName) {
     console.log(chainName);
-    if (chainName === "forma") {
+    if (chainName === "formal") {
+      if (isMetaMaskInstalled()) {
+        try {
+          const accounts = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              window.leap.ethereum
+                .request({ method: 'eth_requestAccounts' })
+                .then(resolve)
+                .catch(reject);
+            }, 100);
+          });
+          console.log('Connected to MetaMask', accounts[0]);
+          return { chainName, address: accounts[0], isWalletConnected: true };
+    
+        } catch (error) {
+
+          console.error('User denied account access',error);
+
+          return null;
+        }
+      } else {
+        console.log('MetaMask is not installed');
+        alert('MetaMask is not installed');
+        return null;
+      }
+    } 
+    else if (chainName === "forma") {
       if (isMetaMaskInstalled()) {
         try {
           const accounts = await new Promise((resolve, reject) => {
@@ -89,6 +115,12 @@ export function AuthContextProvider({ children }) {
       console.log('Disconnected from MetaMask');
       return Promise.resolve(true);
     } 
+    else if (chainName === "formal") {
+      // MetaMask doesn't have a built-in disconnect method
+      // You can clear your app's state instead
+      console.log('Disconnected from Leap');
+      return Promise.resolve(true);
+    } 
     else if (chainName === "solana") {
       // MetaMask doesn't have a built-in disconnect method
       // You can clear your app's state instead
@@ -139,7 +171,7 @@ export function AuthContextProvider({ children }) {
   }
 
   async function reconnect(cachedAuth) {
-    console.log(cachedAuth);
+    console.log("Cashed Wallet: ",cachedAuth.wallet.type);
     if (cachedAuth.wallet.type === "forma") {
         
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -152,8 +184,19 @@ export function AuthContextProvider({ children }) {
             // Optionally, you can update the auth with the new account
             // setAuth({ ...cachedAuth, wallet: { ...cachedAuth.wallet, address: accounts[0] } });
           }}
-
-          else if (cachedAuth.wallet.type === "solana") {
+    else if (cachedAuth.wallet.type === "formal") {
+        
+          const accounts = await window.leap.ethereum.request({ method: 'eth_requestAccounts' });
+          console.log(accounts);
+          if (accounts.length > 0 && accounts[0].toLowerCase() === cachedAuth.wallet.adress.toLowerCase()) {
+            console.log('Reconnected to Leap Forma', accounts[0]);
+            setAuth(cachedAuth);
+          } else {
+            console.log('Leap Forma account does not match cached account');
+            // Optionally, you can update the auth with the new account
+            // setAuth({ ...cachedAuth, wallet: { ...cachedAuth.wallet, address: accounts[0] } });
+          }}
+    else if (cachedAuth.wallet.type === "solana") {
             if (window.solana && window.solana.isPhantom) {
               try {
                 const { publicKey } = await window.solana.connect({ onlyIfTrusted: true });
