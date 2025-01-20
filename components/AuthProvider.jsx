@@ -174,13 +174,15 @@ export function AuthContextProvider({ children }) {
     console.log("Cashed Wallet: ",cachedAuth.wallet.type);
     if (cachedAuth.wallet.type === "forma") {
         
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
           console.log(accounts);
           if (accounts.length > 0 && accounts[0].toLowerCase() === cachedAuth.wallet.adress.toLowerCase()) {
             console.log('Reconnected to MetaMask', accounts[0]);
             setAuth(cachedAuth);
           } else {
             console.log('MetaMask account does not match cached account');
+            accounts = await window.leap.ethereum.request({ method: 'eth_requestAccounts' });
+            setAuth(cachedAuth);
             // Optionally, you can update the auth with the new account
             // setAuth({ ...cachedAuth, wallet: { ...cachedAuth.wallet, address: accounts[0] } });
           }}
