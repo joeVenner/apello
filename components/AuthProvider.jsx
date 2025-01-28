@@ -39,7 +39,7 @@ export function AuthContextProvider({ children }) {
                 .catch(reject);
             }, 100);
           });
-          console.log('Connected to MetaMask', accounts[0]);
+          console.log('Connected to Leap', accounts[0]);
           return { chainName, address: accounts[0], isWalletConnected: true };
     
         } catch (error) {
@@ -49,8 +49,8 @@ export function AuthContextProvider({ children }) {
           return null;
         }
       } else {
-        console.log('MetaMask is not installed');
-        alert('MetaMask is not installed');
+        console.log('Leap wallet is not installed');
+        alert('Leap wallet is not installed');
         return null;
       }
     } 
