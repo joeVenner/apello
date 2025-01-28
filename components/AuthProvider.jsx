@@ -49,8 +49,8 @@ export function AuthContextProvider({ children }) {
           return null;
         }
       } else {
-        console.log('Leap wallet is not installed');
-        alert('Leap wallet is not installed');
+        console.log('Leap wallet is not installed, Get it here https://www.leapwallet.io/download');
+        alert('Leap wallet is not installed, Get it here (https://www.leapwallet.io/download)');       
         return null;
       }
     } 
