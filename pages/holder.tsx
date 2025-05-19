@@ -106,7 +106,7 @@ const HolderSection = () => {
               our tools,{" "}
               <a
                 className="text-apello hover:underline hover:opacity-90 cursor-pointer"
-                href="https://discord.gg/caalabs"
+                href="https://bit.ly/caa-labs"
               >
                 join
               </a>{" "}
