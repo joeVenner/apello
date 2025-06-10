@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useManager } from "@cosmos-kit/react";
+import { assets, chains } from 'chain-registry/mainnet';
 
 import * as ApelloAPI from "../interface/apello";
 import useThread from "../hooks/useThread";
@@ -27,6 +28,8 @@ export function AuthContextProvider({ children }) {
 
 
   async function connectWallet(chainName) {
+    console.log(assets, chains);
+    
     console.log(chainName);
     if (chainName === "formal") {
       if (isMetaMaskInstalled()) {

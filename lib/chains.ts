@@ -1,3 +1,4 @@
+import { log } from "console";
 import mapping from "./mapping";
 import { capitalize } from "./string";
 
@@ -39,9 +40,15 @@ export const CHAINS: Chain[] = [
     ticker: "STARS",
     supported: true,
   },
+  {
+    name: "initia",
+    ticker: "init",
+    supported: true,
+  },
   { name: "juno", 
     ticker: "JUNO", 
-    supported: true },
+    supported: true 
+  },
   {
     name: "passage",
     ticker: "PASG",
@@ -115,5 +122,6 @@ export const CHAINS_BY_WALLET_TYPE = mapping("name", CHAINS, (k) => {
 
 
 export function chainForWallet(wallet: { type: string }) {
+  
   return CHAINS_BY_WALLET_TYPE[wallet.type];
 }
