@@ -36,7 +36,7 @@ const NftSection = (props) => {
         getcollectionInfo();
 
         const fetchCollection = async ()=> {
-          const response = await axios.get(`https://apello-api.xyz:4000/api/nfts/${db_name}`);
+          const response = await axios.get(`https://api.apello.org/api/nfts/${db_name}`);
           const {data, collectInfo} = response.data;
           
             

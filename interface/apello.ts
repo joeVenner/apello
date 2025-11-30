@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://apello-api.xyz:4000";
+const BASE_URL = "https://api.apello.org";
 
 export function addWallet(chainName, address) {
   return axios.post(`${BASE_URL}/api/wallets`, {
