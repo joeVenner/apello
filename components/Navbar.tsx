@@ -49,6 +49,7 @@ function MobileMenu({ wallet, close }) {
         <Header.MenuLink text="Holders" href="/holder" />
         <SalesDropdown
           chains={[
+            { name: "Cosmos", token: "Atom" },
             { name: "Stargaze" },
             { name: "Injective" },
             { name: "Teritori", token: "Tori" },
@@ -111,6 +112,7 @@ export default function Navbar() {
           <Header.MenuLink text="Holders" href="/holder" />
           <SalesDropdown
             chains={[
+              { name: "Cosmos", token: "Atom" },
               { name: "Stargaze" },
               { name: "Injective" },
               { name: "Teritori", token: "Tori" },

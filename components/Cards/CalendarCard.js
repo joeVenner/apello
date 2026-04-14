@@ -5,16 +5,19 @@ import Image from "next/image";
 export const Chain = ({name}) => {
     let chainUrl;
     switch(name) {
-        case 'terra': 
+        case 'terra':
             chainUrl = "/terra_station.png";
             break;
-        case 'juno': 
+        case 'cosmoshub':
+            chainUrl = "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/cosmoshub/chainImg/logoImg/chainImg.svg";
+            break;
+        case 'juno':
             chainUrl = "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/juno/chainImg/logoImg/chainImg.svg";
             break;
-        case 'stargaze': 
+        case 'stargaze':
             chainUrl = "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/stargaze/chainImg/logoImg/chainImg.svg";
             break;
-        case 'teritori': 
+        case 'teritori':
             chainUrl = "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/teritori/chainImg/logoImg/chainImg.svg";
             break;
         default:

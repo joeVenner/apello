@@ -98,6 +98,7 @@ const RaritySection = () => {
                 <ul className="py-2" onClick={selectChain} >
                   <li  className="py-2 px-6 hover:bg-[#212529] cursor-pointer select-none" value="All Chains" >All Chains</li>
                   <hr  className="my-2" />
+                  <li  className="py-4 px-6 hover:bg-[#212529] cursor-pointer select-none" value="Cosmos">Cosmos</li>
                   <li  className="py-4 px-6 hover:bg-[#212529] cursor-pointer select-none" value="Terra">Terra</li>
                   <li className="py-4 px-6 hover:bg-[#212529] cursor-pointer select-none" value="Stargaze">Stargaze</li>
                   <li className="py-4 px-6 hover:bg-[#212529] cursor-pointer select-none" value="Juno">Juno</li>
