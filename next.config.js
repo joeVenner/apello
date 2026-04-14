@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
-
 const nextConfig = {
   reactStrictMode: false,
   images: {
@@ -10,9 +8,6 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
   },
   typescript: {
     // !! WARN !!
