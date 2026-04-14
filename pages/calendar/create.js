@@ -93,8 +93,8 @@ const AddNewCalendar = () => {
             <h3 className="text-violet">Mint information</h3>
             <Input label="Mint price" type="number" placeholder="Type your collection mint price"/>
             <Input label="Mint date" required type="datetime-local" placeholder="dd/mm/aaa"/>
-            <Select label="Mint token" {...register("mintToken")} options={["Juno","USDC", "Stars", "Luna", "Tori"]} required/>
-            <Select label="Mint chain" {...register("chain")} required  options={["Juno","Stargaze", "Terra", "Teritori"]} />
+            <Select label="Mint token" {...register("mintToken")} options={["Juno","USDC", "Stars", "Luna", "Tori", "Atom"]} required/>
+            <Select label="Mint chain" {...register("chain")} required  options={["Juno","Stargaze", "Terra", "Teritori", "Cosmos"]} />
         </section>
     )
     /** Group the collection input fields in a component */
