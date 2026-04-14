@@ -26,6 +26,12 @@ export class Chain {
 
 export const CHAINS: Chain[] = [
   {
+    name: "cosmoshub",
+    properName: "Cosmos",
+    ticker: "ATOM",
+    supported: true,
+  },
+  {
     name: "injective",
     ticker: "INJ",
     supported: true,
