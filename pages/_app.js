@@ -10,7 +10,6 @@ import Layout from "../containers/Layout";
 import { AuthContextProvider } from "../components/AuthProvider";
 import { DiscordProvider } from "../hooks/useDiscordConnection";
 import "../styles/globals.css";
-import "../styles/starfield.sass";
 import "@interchain-ui/react/styles";
 
 const WC_PROJECT_ID = "a4a7d739f0795a89b2b212a734d662fa";

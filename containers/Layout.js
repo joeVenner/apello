@@ -1,13 +1,8 @@
-import { useRouter } from "next/router";
-
 import FileHeader from "../components/FileHeader";
 import Navbar from "../components/Navbar";
 import Head from "next/head";
 
 const Layout = ({ children }) => {
-  const { pathname } = useRouter();
-  const noNav = ["/calendar", "/calendar/create"];
-
   return (
     <>
       <Head>
@@ -17,7 +12,7 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div
-        className={`App bg-fauxblack2 relative text-blanc min-h-screen overflow-hidden w-full flex flex-col`}
+        className={`App mesh-bg bg-surface relative text-blanc min-h-screen overflow-hidden w-full flex flex-col`}
       >
         <FileHeader
           appPath="/"

@@ -78,9 +78,6 @@ const HolderSection = () => {
 
   return (
     <section className="relative overflow-hidden flex flex-col items-center md:justify-center h-full grow md:py-16">
-      <div className="hidden md:block" id="stars" />
-      <div className="hidden md:block" id="stars2" />
-      <div className="hidden md:block" id="stars3" />
       <div className="flex flex-col z-10 w-full md:w-[630px]">
         <div className="flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2">
           <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-lg rounded-xl p-6 gap-y-2">

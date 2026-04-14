@@ -75,9 +75,6 @@ function Main() {
         "border-b-2 border-bwhite",
       )}
     >
-      <div id="stars" />
-      <div id="stars2" />
-      <div id="stars3" />
       <div
         className="relative my-6 md:mb-12 mt-6 md:mt-8 animate-bounce-float h-[30vh] w-[30vh] md:h-[35vh] md:w-[35vh]"
         style={{

@@ -1,3 +1,6 @@
-export default function csx(...args) {
-  return args.filter(Boolean).join(" ");
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export default function csx(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
