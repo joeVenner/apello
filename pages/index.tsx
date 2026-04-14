@@ -20,13 +20,12 @@ function InviteLink({ text, href }) {
       target="_blank"
       rel="noopener noreferrer"
       className={csx(
-        "w-60 px-3 py-3",
-        "bg-black rounded",
-        "border-solid border-apello border-2",
-        "text-base font-medium uppercase tracking-wide text-center text-white",
+        "w-60 px-6 py-3",
+        "bg-gradient-to-r from-apello to-orange",
+        "hover:from-orange hover:to-apello hover:shadow-glow-apello",
+        "text-base font-bold uppercase tracking-wide text-center text-fauxblack",
         "hover:cursor-pointer focus:outline-none focus-visible:ring-2 ring-blanc",
-        "shadow-[inset_0_0_0_rgba(230,150,0,0.6)] ease-out duration-700",
-        "hover:shadow-[inset_240px_0_0_rgba(230,150,0,1)]",
+        "rounded-xl transition-all duration-300",
       )}
     >
       {text}
@@ -71,8 +70,8 @@ function Main() {
     <div
       className={csx(
         "relative flex flex-col items-center justify-center",
-        "pb-16 overflow-hidden bg-fauxblack2",
-        "border-b-2 border-bwhite",
+        "pb-16 overflow-hidden bg-surface",
+        "border-b border-white/10",
       )}
     >
       <div
@@ -87,13 +86,13 @@ function Main() {
         className={csx(
           "text-center",
           "mb-3 text-3xl px-2 md:px-0 md:text-6xl tracking-wide",
-          "font-bold uppercase drop-shadow-apello",
+          "font-bold uppercase shadow-glow-apello",
           "selection:bg-bleu selection:text-[#171819]",
         )}
       >
         Evolving The Cosmos
       </div>
-      <p className="md:mb-2 text-center text-[#e5e5e5] font-jura text-xl md:text-3xl selection:bg-violet ">
+      <p className="md:mb-2 text-center text-white/70 font-jura text-xl md:text-3xl selection:bg-violet ">
         The Premier Toolkit for <b>Cosmos</b> NFT Communities
       </p>
       <div className="hidden flex flex-row md:mt-4">
@@ -163,7 +162,7 @@ function SupportedChains() {
       className={csx(
         "relative flex flex-col items-center justify-center",
         "pb-16 overflow-hidden",
-        "border-b border-bwhite",
+        "border-b border-white/10",
       )}
     >
       <div
@@ -199,7 +198,7 @@ function TokenGatingInfo() {
       className={csx(
         "relative flex flex-col md:flex-row items-center justify-center",
         "pb-8 px-12 overflow-hidden",
-        "border-b-2 border-bwhite",
+        "border-b border-white/10",
       )}
     >
       <Image
@@ -244,7 +243,7 @@ function SalesTrackerInfo() {
       className={csx(
         "relative flex flex-col-reverse md:flex-row items-center justify-center",
         "pb-8 pt-8 md:pt-0 px-16 overflow-hidden",
-        "border-b-2 border-bwhite",
+        "border-b border-white/10",
       )}
     >
       <div
@@ -283,9 +282,9 @@ function SalesTrackerInfo() {
 
 function Footer() {
   return (
-    <footer className="flex flex-col align-center justify-center bg-fauxblack2">
+    <footer className="flex flex-col align-center justify-center bg-surface border-t border-white/10">
       <div className="flex flex-col py-8">
-        <div className="flex mb-6 font-bold text-xl justify-center">
+        <div className="flex mb-6 font-bold text-xl justify-center text-muted">
           Join The Community
         </div>
         <div className="flex flex-row gap-x-6 justify-center pb-6">
@@ -295,7 +294,7 @@ function Footer() {
             rel="noopener noreferrer"
           >
             <FaGithub
-              className="transition duration-200 opacity-85 hover:opacity-100 hover:cursor-pointer"
+              className="transition-all duration-200 opacity-85 hover:opacity-100 hover:text-white hover:cursor-pointer"
               size={48}
             />
           </a>
@@ -305,7 +304,7 @@ function Footer() {
             rel="noopener noreferrer"
           >
             <FaTwitter
-              className="transition duration-200 opacity-85 hover:opacity-100 hover:cursor-pointer"
+              className="transition-all duration-200 opacity-85 hover:opacity-100 hover:text-apello hover:cursor-pointer"
               size={48}
             />
           </a>
@@ -315,7 +314,7 @@ function Footer() {
             rel="noopener noreferrer"
           >
             <FaDiscord
-              className="transition duration-200 opacity-85 hover:opacity-100 hover:cursor-pointer"
+              className="transition-all duration-200 opacity-85 hover:opacity-100 hover:text-[#5865F2] hover:cursor-pointer"
               size={48}
             />
           </a>

@@ -17,12 +17,12 @@ function VerifyStep({
   return (
     <div
       className={csx(
-        "flex flex-col border-y-2 md:border-2 md:rounded-xl my-2 border-bwhite",
+        "flex flex-col border border-white/10 bg-white/5 backdrop-blur-xl rounded-2xl my-2",
         complete && "opacity-40",
       )}
     >
-      <div className="flex text-2xl bg-fauxblack2 rounded-xl">
-        <div className="flex justify-center items-center mr-4 py-2 px-6 rounded-l-xl border-r border-bwhite w-[60px]">
+      <div className="flex text-2xl bg-surface-elevated rounded-xl">
+        <div className="flex justify-center items-center mr-4 py-2 px-6 rounded-l-xl border-r border-white/10 w-[60px]">
           {number}
         </div>
         <div className="flex flex-col w-full p-3 mb-2 md:mb-0">
@@ -79,8 +79,8 @@ const HolderSection = () => {
   return (
     <section className="relative overflow-hidden flex flex-col items-center md:justify-center h-full grow md:py-16">
       <div className="flex flex-col z-10 w-full md:w-[630px]">
-        <div className="flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2">
-          <div className="bg-fauxblack2 flex tracking-wide flex-col items-center text-lg rounded-xl p-6 gap-y-2">
+        <div className="flex flex-col border border-white/10 bg-white/5 backdrop-blur-xl rounded-2xl mb-2">
+          <div className="bg-surface flex tracking-wide flex-col items-center text-lg rounded-xl p-6 gap-y-2">
             <div className="text-center text-xl md:text-2xl font-bold">
               Welcome to Apello Token Gate
             </div>
@@ -89,7 +89,7 @@ const HolderSection = () => {
             </div>
           </div>
         </div>
-        <div className="bg-fauxblack2 relative overflow-hidden flex flex-col md:border-2 border-bwhite md:rounded-xl mb-2h">
+        <div className="bg-surface relative overflow-hidden flex flex-col border border-white/10 bg-white/5 backdrop-blur-xl rounded-2xl mb-2h">
           <div className="flex tracking-wide flex-col items-center text-md rounded-xl p-6 gap-y-2 hidden md:flex">
             <div className="text-center md:text-left">
               Apello is an NFT community toolkit for Cosmos projects built by
@@ -196,7 +196,7 @@ const HolderSection = () => {
                     <li className="pb-2">
                     Click
                     <a href="https://discord.gg/caalabs">
-                      <span className="bg-green mx-2 p-2 px-4 rounded-md text-sm uppercase">
+                      <span className="bg-green/80 backdrop-blur-sm hover:bg-green transition-colors mx-2 p-2 px-4 rounded-md text-sm uppercase">
                         &#128273;&nbsp;&nbsp; Verify
                       </span>
                     </a>

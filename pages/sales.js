@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SalesCard from "../components/Cards/SalesCard";
 import Top5 from "../components/Top5";
+import SearchBar from "../components/SearchBar";
+import Skeleton from "../components/Skeleton";
 import useAxios from "../hooks/useAxios";
 import useFetch from "../hooks/useFetch";
 import TopSale from "../components/Cards/TopSale";
@@ -27,7 +29,7 @@ const GridView = ({ list, lastElemet, query, chain }) =>
 
 const ListView = ({ list, lastElemet }) =>
   list && (
-    <div className="rounded-2xl bg-noir my-2">
+    <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl my-2">
       {list?.map((sale, i) =>
         list.length === i + 1 ? (
           <div key={i} className="" ref={lastElemet}>
@@ -36,7 +38,7 @@ const ListView = ({ list, lastElemet }) =>
         ) : (
           <div key={i} className="">
             <SalesCard {...sale} />
-            <hr className="mx-4" />
+            <div className="border-t border-white/5" />
           </div>
         )
       )}
@@ -86,49 +88,7 @@ const Sales = () => {
     },
     [loading, hasMore]
   );
-  //search bar
-  let timer;
-  const handleChange = (e) => {
-    e.preventDefault();
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      setQuery(e.target.value);
-      setPageNumber(0);
-    }, 1000);
-  };
   const [isGrid, setGrid] = useState(true);
-
-  //   for the search bar expension
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const searchInputRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchInputRef.current &&
-        !searchInputRef.current.contains(event.target)
-      ) {
-        setIsExpanded(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleSearch = () => {
-    setIsExpanded(!isExpanded);
-    // Focus the input when it becomes visible
-    if (!isExpanded) {
-      searchInputRef.current.focus();
-    }
-  };
 
   // border-b-2 last:border-b-0
   return (
@@ -147,8 +107,8 @@ const Sales = () => {
           {/* here the user can select the card's type(grid/list)  */}
           <div className="inline-flex" aria-label="grid/list buttons">
             <button
-              className={`p-1.5 rounded-l border-noir ${
-                isGrid ? "bg-violet" : "bg-noir hover:bg-noir/40"
+              className={`p-1.5 rounded-l text-muted hover:text-white transition-colors ${
+                isGrid ? "bg-violet text-white" : "bg-white/5 hover:bg-white/10"
               }`}
               onClick={() => setGrid(true)}
             >
@@ -168,8 +128,8 @@ const Sales = () => {
               </svg>
             </button>
             <button
-              className={`p-1.5 rounded-r border-noir ${
-                isGrid === false ? "bg-violet" : "bg-noir hover:bg-noir/40"
+              className={`p-1.5 rounded-r text-muted hover:text-white transition-colors ${
+                isGrid === false ? "bg-violet text-white" : "bg-white/5 hover:bg-white/10"
               }`}
               onClick={() => setGrid(false)}
             >
@@ -190,62 +150,12 @@ const Sales = () => {
             </button>
           </div>
         </div>
-        {/* className="max-w-[10rem] sm:max-w-sm w-full flex items-center rounded-xl border-[1px]  focus:shadow focus:outline-none focus-visible:border-violet h-12  p-1 cursor-text " */}
-        <div
-          aria-label="search by name"
-          className={` max-w-[40%]  flex items-center ${
-            isExpanded && "border-b"
-          } border-[#aaa] focus:shadow focus:outline-none h-10  cursor-text`}
-        >
-          <button className="" onClick={toggleSearch}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
-          <div
-            ref={searchInputRef}
-            className={`${
-              isExpanded ? "visible" : "hidden"
-            } inline-flex w-full`}
-          >
-            <input
-              type="text"
-              placeholder="Collection Name"
-              name="query"
-              onChange={handleChange}
-              className="px-1 bg-transparent outline-none w-full "
-            />
-            {query.length > 0 && (
-              <button className="" onClick={() => setQuery("")}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            )}
-          </div>
-        </div>
+        <SearchBar
+          placeholder="Collection Name"
+          value={query}
+          onChange={(val) => { setQuery(val); setPageNumber(0); }}
+          className="max-w-[40%]"
+        />
       </div>
       {isGrid ? (
         <GridView
@@ -259,28 +169,11 @@ const Sales = () => {
       )}
 
       {loading && (
-        <div className="inline-flex items-center m-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-              className="opacity-25"
-            ></circle>
-            <path
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              className="opacity-75"
-            ></path>
-          </svg>
-          Loading...
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-5">
+          <Skeleton variant="card" />
+          <Skeleton variant="card" />
+          <Skeleton variant="card" />
+          <Skeleton variant="card" />
         </div>
       )}
     </section>

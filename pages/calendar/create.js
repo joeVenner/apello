@@ -9,7 +9,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 const Select = React.forwardRef(({ onChange, onBlur, name, label, options }, ref) => (
     <>
       <label>{label}</label>
-      <select className="w-full cursor-pointer bg-gray-100 border border-gray-300 p-2 rounded focus:border-blue-500 focus:bg-white placeholder-gray-400" name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+      <select className="w-full cursor-pointer border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl px-4 py-2 text-white placeholder:text-muted focus:border-violet focus:outline-none focus:ring-1 focus:ring-violet/50" name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
         {
             options.map((option, index) => (<option key={index} value={option}>{option}</option>))
         }
@@ -69,10 +69,10 @@ const AddNewCalendar = () => {
     /** Input field component */
     const Input = ({label, required, type, placeholder, name}) => (
         <div className="relative">
-            <legend className="mt-2 text-gray-700">{label}</legend>
+            <legend className="mt-2 text-white">{label}</legend>
             <input name={name} {...register(label, { required })}
-                className={`${errors[label] && "border !border-red-400"} w-full bg-gray-100 border border-gray-300 p-2 rounded focus:border-blue-500 focus:bg-white placeholder-gray-400`}
-                type={type} placeholder={placeholder}   
+                className={`${errors[label] && "border !border-red-400"} w-full border border-white/10 bg-white/5 backdrop-blur-xl rounded-xl px-4 py-2 text-white placeholder:text-muted focus:border-violet focus:outline-none focus:ring-1 focus:ring-violet/50`}
+                type={type} placeholder={placeholder}
             />
             { errors[label] && <span className="absolute right-0 -bottom-5 text-red-400 text-xs">mandatory</span> }
         </div>
@@ -121,20 +121,20 @@ const AddNewCalendar = () => {
         <section className="w-full justify-between mt-4 flex flex-row-reverse">
           { 
             step === fieldGroups.length-1 &&
-            <button type="submit" className="py-3 px-5 bg-blue-700 text-blue-100 rounded text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed" disabled={!isValid}>
+            <button type="submit" className="py-3 px-5 bg-violet hover:bg-violet/80 text-white transition-colors rounded text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed" disabled={!isValid}>
                 SAVE
             </button>
           }
           {
             step < fieldGroups.length-1 &&
-            <button type="button" className="flex flex-row items-center text-xs font-bold bg-blue-100 rounded py-2 px-3 text-blue-600 flex-row-reverse disabled:opacity-40 disabled:cursor-not-allowed" disabled={!isValid} onClick={()=>{setStep(step+1)}}>
+            <button type="button" className="flex flex-row items-center text-xs font-bold bg-violet hover:bg-violet/80 text-white transition-colors rounded py-2 px-3 flex-row-reverse disabled:opacity-40 disabled:cursor-not-allowed" disabled={!isValid} onClick={()=>{setStep(step+1)}}>
                 <Arrow direction="right" />
                 NEXT
             </button>
           }
           {
             step > 0 &&
-            <button type="button" className="flex flex-row items-center text-xs font-bold bg-gray-100 text-gray-400 rounded py-2 px-3" onClick={()=>{setStep(step-1)}}>
+            <button type="button" className="flex flex-row items-center text-xs font-bold bg-white/10 hover:bg-white/20 text-white transition-colors rounded py-2 px-3" onClick={()=>{setStep(step-1)}}>
             <Arrow direction="left" />
                 BACK
             </button>
@@ -151,7 +151,7 @@ const AddNewCalendar = () => {
     function renderMarkers(){
         let markers = []
         for(let i=0; i<fieldGroups.length; i++)
-          markers.push(<span key={i} className={`rounded-full w-2 h-2 ${step >= i ? "bg-blue-600" : "bg-gray-300"}`} />)
+          markers.push(<span key={i} className={`rounded-full w-2 h-2 ${step >= i ? "bg-violet" : "bg-white/20"}`} />)
         return markers
     }
 
@@ -170,7 +170,7 @@ const AddNewCalendar = () => {
                 <title>Add your collection</title>
             </Head>
             <main className="min-h-[calc(100vh-80px)] w-full font-roboto py-6 flex flex-col justify-center items-center sm:py-12">
-                <form className="bg-white text-noir p-8 w-11/12 md:w-1/2 lg:w-2/5 shadow-sm" onSubmit={handleSubmit(onSubmit)}>
+                <form className="border border-white/10 bg-white/5 backdrop-blur-xl rounded-2xl text-white p-8 w-11/12 md:w-1/2 lg:w-2/5 shadow-glass" onSubmit={handleSubmit(onSubmit)}>
                 <h2 className="text-xl font-bold mb-4">Add your collection</h2>
                 {fieldGroups[step]}
                 <Navigation/>

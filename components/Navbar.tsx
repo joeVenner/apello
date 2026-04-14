@@ -5,6 +5,7 @@ import Image from "next/image";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useAuthContext } from "../hooks/useAuthContext";
 import csx from "../lib/csx";
+import { CHAINS } from "../lib/chains";
 import { CoinImage } from "./Cards/SalesCard";
 import Header from "./Header";
 import { useRouter } from "next/router";
@@ -38,7 +39,7 @@ function MobileMenu({ wallet, close }) {
       ref={ref}
       className={csx(
         "absolute right-0 top-[63px] px-4 pb-4 z-50 flex flex-col justify-center",
-        "bg-fauxblack border-bwhite border-r-0 border",
+        "bg-surface/90 backdrop-blur-xl border border-white/10 border-r-0 rounded-xl shadow-glass",
         "drop-shadow-lg",
       )}
     >
@@ -48,15 +49,7 @@ function MobileMenu({ wallet, close }) {
       <Header.Menu>
         <Header.MenuLink text="Holders" href="/holder" />
         <SalesDropdown
-          chains={[
-            { name: "Cosmos", token: "Atom" },
-            { name: "Stargaze" },
-            { name: "Injective" },
-            { name: "Teritori", token: "Tori" },
-            { name: "Archway", token: "Arch" },
-            { name: "Juno" },
-            { name: "Passage" },
-          ]}
+          chains={CHAINS.filter(c => c.supported).map(chain => ({ name: chain.displayName, token: chain.ticker }))}
         />
         <Header.MenuDropdown text="Calendar">
           <Header.MenuDropdownLink href="/calendar">
@@ -111,15 +104,7 @@ export default function Navbar() {
         <Header.Menu>
           <Header.MenuLink text="Holders" href="/holder" />
           <SalesDropdown
-            chains={[
-              { name: "Cosmos", token: "Atom" },
-              { name: "Stargaze" },
-              { name: "Injective" },
-              { name: "Teritori", token: "Tori" },
-              { name: "Archway", token: "Arch" },
-              { name: "Juno" },
-              { name: "Passage" },
-            ]}
+            chains={CHAINS.filter(c => c.supported).map(chain => ({ name: chain.displayName, token: chain.ticker }))}
           />
           <Header.MenuDropdown text="Calendar">
             <Header.MenuDropdownLink href="/calendar">

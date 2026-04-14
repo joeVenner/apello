@@ -33,10 +33,10 @@ function ChainSelect({ connect, close, isMobileNav = false }) {
     <div
       ref={ref}
       className={csx(
-        "flex flex-col z-50 bg-fauxblack py-4 pl-5 pr-[64px] md:pr-12",
+        "flex flex-col z-50 bg-surface/90 backdrop-blur-xl py-4 pl-5 pr-[64px] md:pr-12",
         "text-xl",
         !isMobileNav && "rounded-xl",
-        "border-l border-b border-bwhite",
+        "border border-white/10 shadow-glass",
         isMobileNav
           ? "fixed top-[0px] right-[0px]"
           : "fixed top-[70px] right-[4px]",
@@ -61,7 +61,7 @@ function WalletInfo({ wallet }) {
         height={20}
         alt={wallet.type}
       />
-      {displayAddress(wallet.address)}
+      <span className="text-muted">{displayAddress(wallet.address)}</span>
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function Header({ children }) {
         "h-16",
         "p-1 md:p-2",
         "text-white",
-        "border-b border-bwhite",
+        "border-b border-white/10 backdrop-blur-xl bg-surface/80",
       )}
     >
       {children}
@@ -86,7 +86,7 @@ Header.MenuDropdown = function HeaderMenuDropdown({ text = "", children }) {
         className={csx(
           "absolute",
           "hidden hover:flex group-hover:flex flex-col",
-          "bg-noir shadow rounded",
+          "border border-white/10 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass",
           "w-44 left-[-20px] px-4 py-1 md:py-3 z-20",
         )}
       >
@@ -107,8 +107,8 @@ Header.MenuDropdownLink = function HeaderMenuDropdownLink({
       className={csx(
         "block inline-flex gap-1 items-center",
         "p-1 pr-1",
-        "text-base text-white whitespace-nowrap hover:text-apello",
-        "transition-colors",
+        "text-base text-white whitespace-nowrap hover:bg-white/10 rounded-lg hover:text-apello",
+        "transition-colors duration-200",
         disabled && "cursor-not-allowed",
       )}
     >

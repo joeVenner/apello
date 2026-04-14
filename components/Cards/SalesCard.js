@@ -22,7 +22,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                 <img className="basis-[50px] h-[50px] rounded-xl" src={(nftImage && (CollectionName!=='rektbulls' && !CollectionName.includes("levana"))) ? nftImage : collectionImage} alt="" width="50" height="50" />
                 <div className="flex basis-full flex-col justify-end overflow-hidden text-sm relative">
                     <span className="font-semibold max-w-fit capitalize truncate mb-4  ">{`${CollectionName ? CollectionName : ''} # ${nftID}` }</span>
-                    <div className="flex justify-center items-center py-1 font-normal px-2 h-fit w-fit rounded-2xl bg-violet/80">
+                    <div className="flex justify-center items-center py-1 font-normal px-2 h-fit w-fit rounded-2xl bg-violet/60 backdrop-blur-sm">
                         <p className="m-0 text-xs leading-[1]">Sale</p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
 
                     </div>
                     <div className="flex gap-x-2">
-                        <p className="text-[#85848b] whitespace-nowrap">{formatDistanceToNowStrict(new Date(createdAt), { addSuffix: true })}</p>
+                        <p className="text-muted whitespace-nowrap">{formatDistanceToNowStrict(new Date(createdAt), { addSuffix: true })}</p>
                         <a href={`https://www.mintscan.io/${chain}/txs/${transactionID}`} target="_blank" rel="noreferrer" className="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -54,7 +54,7 @@ const SalesCard = ({amount, buyer, chain, contract, createdAt, nftID, transactio
                 </div>
 
             </div>
-            <div className={`p-4 ${show ? 'block' : 'hidden'} flex justify-between`}>
+            <div className={`p-4 bg-white/5 ${show ? 'block' : 'hidden'} flex justify-between`}>
                 <span className="font-jura">Buyer</span>
                 <div className="flex gap-x-2">
                     {chain === "cosmoshub" ? (<Image src="/tokens/atom.png" alt="atom coin" className="h-5" width={20} height={20}  />)

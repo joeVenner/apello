@@ -1,4 +1,5 @@
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
+import GlassCard from "../GlassCard";
 
 export const coinName = (chain, token) => chain === "cosmoshub" ? "Atom" : chain === "stargaze" ? "Stars" : chain === "juno" ? "Usdc" : chain === "passage" ? "Pasg" : chain === "injective" ? "Inj" : chain === "chihuahua" ? "HuaHua": chain === "archway" ? "Arch": chain === "teritori" && token === "Tori" ? "Tori" : "Atom"
 
@@ -6,7 +7,7 @@ const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transa
     // console.log(createdAt);
     return ( 
         
-            <div className="h-full flex flex-col border border-noir rounded-lg overflow-hidden text-white-1 bg-noir transition-transform hover:scale-[1.02]">
+            <GlassCard className="h-full flex flex-col text-white-1" hover={true}>
                 <div className="relative w-full overflow-hidden flex items-center justify-center aspect-square">
                     <div className="relative flex items-center justify-center w-full h-full rounded-[6px] overflow-hidden">
                         <img src={(nftImage && (CollectionName!=='rektbulls' && !CollectionName.includes("levana"))) ? nftImage : collectionImage} alt="Kirin Labs image" loading="lazy" className="aspect-square object-contain w-full h-full rounded-[6px] overflow-hidden" />
@@ -18,10 +19,10 @@ const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transa
                         <span className="inline truncate font-bold">{`${CollectionName ? CollectionName : ''} # ${nftID?.replace(' Tori','').replace(' Atom','')}` }</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 12" className="my-auto ml-1 min-w-[12px]"  width="12" height="12" size="12"><path fill="#6C63FF" fill-rule="evenodd" d="M5.655.33a.5.5 0 01.69 0l.492.469a.5.5 0 00.514.109l.64-.229a.5.5 0 01.63.28l.26.63a.5.5 0 00.424.308l.678.052a.5.5 0 01.462.513l-.02.68a.5.5 0 00.263.454l.599.323a.5.5 0 01.213.657l-.294.613a.5.5 0 00.054.522l.416.539a.5.5 0 01-.072.686l-.519.44a.5.5 0 00-.162.5l.16.66a.5.5 0 01-.345.598l-.652.192a.5.5 0 00-.351.39l-.123.669a.5.5 0 01-.558.406l-.674-.09a.5.5 0 00-.48.213l-.383.561a.5.5 0 01-.676.144l-.579-.357a.5.5 0 00-.524 0l-.58.357a.5.5 0 01-.675-.144l-.383-.561a.5.5 0 00-.48-.214l-.674.09a.5.5 0 01-.558-.405l-.123-.67a.5.5 0 00-.35-.39l-.653-.19a.5.5 0 01-.346-.598l.16-.662a.5.5 0 00-.161-.499l-.519-.44a.5.5 0 01-.072-.686l.416-.54a.5.5 0 00.055-.52L.5 4.575a.5.5 0 01.213-.657l.6-.323a.5.5 0 00.261-.454l-.02-.68a.5.5 0 01.463-.513l.678-.052a.5.5 0 00.424-.308l.26-.63a.5.5 0 01.63-.28l.64.229a.5.5 0 00.514-.11L5.655.33z"></path><g clip-path="url(#clip0_1538_39894)"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M8.5 4.5L5.062 7.938 3.5 6.375"></path></g><defs></defs></svg>
                     </div>
-                    <p className="text-[#85848b] whitespace-nowrap">{formatDistanceToNowStrict(new Date(createdAt), { addSuffix: true })}</p>
+                    <p className="text-muted whitespace-nowrap">{formatDistanceToNowStrict(new Date(createdAt), { addSuffix: true })}</p>
                     <div className="flex flex-col sm:flex-row items-start justify-start sm:justify-between sm:items-center gap-2 mt-1">
                         <span className="">{`${(Math.round(amount * 100) / 100).toFixed(2)} $${coinName(chain, nftID?.split(" ")[1])}`}</span>
-                        <a className="rounded-md text-xs md:text-sm hover:opacity-80 bg-noir  transition-all  my-1  p-1 border-[1px] border-violet mr-auto" href={`https://www.mintscan.io/${chain}/txs/${transactionID}`} target="_blank" rel="noreferrer">Details</a>
+                        <a className="rounded-md text-xs md:text-sm hover:opacity-80 bg-white/10 hover:bg-white/20 transition-colors my-1  p-1 border-[1px] border-violet mr-auto" href={`https://www.mintscan.io/${chain}/txs/${transactionID}`} target="_blank" rel="noreferrer">Details</a>
                         
                             {/* <div className="flex-shrink-0 py-1 px-2 rounded text-sm bg-violet/40">
                                 <div className="first-letter:uppercase lowercase">
@@ -38,8 +39,8 @@ const SalesCardGrid = ({amount, buyer, chain, contract, createdAt, nftID, transa
                         
                     </div>
                 </div>
-            </div>
-        
+            </GlassCard>
+
      );
 }
  

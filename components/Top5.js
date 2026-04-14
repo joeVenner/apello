@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CoinImage } from "./Cards/SalesCard";
 import SalesCardGrid, { coinName } from "./Cards/SalesCardGrid";
+import GlassCard from "./GlassCard";
 
 const Card = ({ CollectionName, amountSum, collectionImage, router }) => {
   return (
     <div
-      className={`tilt-card flex flex-col justify-center items-center gap-1 p-5 w-full min-h-[300px] bg-slate-800 text-white shadow-inner bg-contain card`}
+      className={`flex flex-col justify-center items-center gap-1 p-5 w-full min-h-[300px] bg-white/10 text-white shadow-inner bg-contain`}
       style={{
         backgroundImage: `url("${collectionImage}")`,
       }}
@@ -16,7 +17,7 @@ const Card = ({ CollectionName, amountSum, collectionImage, router }) => {
       <span className="font-extrabold capitalize text-xl  ">{`${(
         Math.round(amountSum * 100) / 100
       ).toFixed(2)} $${coinName(router.query.chain)}`}</span>
-      <div className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-[#20162A] z-10 text-xs md:text-sm truncate capitalize">
+      <div className="self-end mt-auto  inline-flex justify-center items-center rounded text-white-1 h-[40px] py-0 px-3 hover:opacity-80 transition duration-300 ease-in-out w-full  bg-white/10 z-10 text-xs md:text-sm truncate capitalize">
         <span className="">{CollectionName}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +84,7 @@ const Top5 = ({ query, setQuery }) => {
     fetchData();
   }, [query, router.query.chain]);
   return (
-    <div className="rounded-2xl my-5 p-2  text-[#85848b]">
+    <div className="rounded-2xl my-5 p-2  text-muted">
       <div className="flex flex-col md:flex-row gap-2 justify-between mb-2 pb-1 ">
         <h3 className="capitalize basis-full text-2xl font-mono text-blanc ">
           top collections
@@ -92,25 +93,25 @@ const Top5 = ({ query, setQuery }) => {
           <input
             type="button"
             onClick={() => setQuery(1)}
-            className={`cursor-pointer ${
+            className={`cursor-pointer px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-muted hover:text-white ${
               query === 1 && "text-white"
-            } p-2 px-3 rounded-lg hover:bg-black/25`}
+            }`}
             value="1 Day"
           />
           <input
             type="button"
             onClick={() => setQuery(7)}
-            className={`cursor-pointer ${
+            className={`cursor-pointer px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-muted hover:text-white ${
               query === 7 && "text-white"
-            } p-2 px-3 rounded-lg hover:bg-black/25`}
+            }`}
             value="7 Days"
           />
           <input
             type="button"
             onClick={() => setQuery(30)}
-            className={`cursor-pointer ${
+            className={`cursor-pointer px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-muted hover:text-white ${
               query === 30 && "text-white"
-            } p-2 px-3 rounded-lg hover:bg-black/25`}
+            }`}
             value="30 Days"
           />
           {/* <input type="button" onClick={()=>setQuery(null)} className={`cursor-pointer ${query===null && "bg-black/25"} p-2 px-3 rounded-lg hover:bg-black/25`} value="All Time" /> */}
